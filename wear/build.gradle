@@ -22,6 +22,7 @@ android {
             proguardFiles '../app/proguard-android-optimize.txt', '../app/proguard-rules.pro'
         }
     }
+    namespace 'xyz.klinker.messenger'
 
 }
 

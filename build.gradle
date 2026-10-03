@@ -16,11 +16,24 @@
 
 def propsFile = project.file('keystore.properties')
 def props = new Properties()
-props.load(new FileInputStream(propsFile))
+if (propsFile.exists()) {
+    props.load(new FileInputStream(propsFile))
+} else {
+    props['keystorefile'] = 'debug.keystore'
+    props['keystorepassword'] = 'android'
+    props['keyalias'] = 'androiddebugkey'
+    props['keypassword'] = 'android'
+}
 
-propsFile = rootProject.file('api_keys.properties')
+def apiKeysFile = rootProject.file('api_keys.properties')
 def apiKeys = new Properties()
-apiKeys.load(new FileInputStream(propsFile))
+if (apiKeysFile.exists()) {
+    apiKeys.load(new FileInputStream(apiKeysFile))
+} else {
+    apiKeys['GIPHY'] = ''
+    apiKeys['ARTICLE'] = ''
+    apiKeys['YOUTUBE'] = ''
+}
 
 buildscript {
 
@@ -31,11 +44,11 @@ buildscript {
     ]
 
     ext.versions = [
-            'gradlePlugin'      : '4.1.0',
-            'targetSdk'         : 30,
+            'gradlePlugin'      : '8.13.2',
+            'targetSdk'         : 36,
             'minSdk'            : 21,
 
-            'kotlin'            : '1.4.10',
+            'kotlin'            : '1.6.21',
 
             'playServices'      : '17.0.0',
             'glide'             : '4.11.0',
@@ -66,8 +79,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:${versions.gradlePlugin}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.2'
     }
 
 }
@@ -75,13 +88,12 @@ buildscript {
 allprojects {
 
     repositories {
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.aliyun.com/repository/public" }
         google()
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url "https://dl.bintray.com/drummer-aidan/maven" }
-        maven { url "https://dl.bintray.com/sensor-tower/android-usage" }
-        maven { url "https://dl.bintray.com/mockito/maven" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         flatDir { dirs "$rootProject.projectDir/shared/libs" }
     }

@@ -2,9 +2,7 @@ package xyz.klinker.messenger.shared.util
 
 import android.app.Activity
 import android.os.Handler
-import com.sensortower.rating.RatingPrompt
-import com.sensortower.rating.RatingPromptOptions
-import com.sensortower.rating.util.RatingPromptSettings
+
 import xyz.klinker.messenger.api.implementation.Account
 import xyz.klinker.messenger.shared.data.Settings
 
@@ -28,13 +26,13 @@ class PromotionUtils(private val context: Activity) {
             return
         }
 
-        Handler().postDelayed({
-            RatingPrompt.show(context, RatingPromptOptions.Builder()
-                    .useAlternateStyle(RatingPromptOptions.Popup.Builder("Pulse")
-                            .accentColor(Settings.mainColorSet.color)
-                            .darkTheme(Settings.isCurrentlyDarkTheme(context))
-                    ).build())
-        }, 500)
+        // Handler().postDelayed({
+        //     RatingPrompt.show(context, RatingPromptOptions.Builder()
+        //             .useAlternateStyle(RatingPromptOptions.Popup.Builder("Pulse")
+        //                     .accentColor(Settings.mainColorSet.color)
+        //                     .darkTheme(Settings.isCurrentlyDarkTheme(context))
+        //             ).build())
+        // }, 500)
     }
     
 }

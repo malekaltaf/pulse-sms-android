@@ -15,8 +15,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="xyz.klinker.messenger">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -45,6 +44,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -102,6 +103,7 @@
             android:launchMode="singleTop"
             android:theme="@style/PulseTheme.MessengerActivity"
             android:resizeableActivity="true"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
 
             <intent-filter>
@@ -129,6 +131,7 @@
         <activity
             android:name=".activity.MessengerTvActivity"
             android:theme="@style/AppTheme.Leanback"
+            android:exported="true"
             android:windowSoftInputMode="adjustPan">
 
             <intent-filter>
@@ -187,6 +190,7 @@
             android:label="@string/quick_share"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
+            android:exported="true"
             android:theme="@style/tutorial_FloatingTutorialTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysVisible" >
 
@@ -284,6 +288,7 @@
             android:name=".service.DrivingModeQuickSettingTile"
             android:icon="@drawable/ic_drive"
             android:label="@string/driving_mode"
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
@@ -292,7 +297,8 @@
         </service>
 
         <!-- Widget -->
-        <receiver android:name=".shared.widget.MessengerAppWidgetProvider">
+        <receiver android:name=".shared.widget.MessengerAppWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

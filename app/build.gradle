@@ -38,6 +38,7 @@ android {
             proguardFiles 'proguard-android-optimize.txt', 'proguard-rules.pro'
         }
     }
+    namespace 'xyz.klinker.messenger'
 
 }
 
@@ -46,7 +47,7 @@ dependencies {
 
     implementation 'io.fotoapparat:fotoapparat:2.6.1'
     implementation 'androidx.biometric:biometric:1.0.1'
-    implementation 'com.sensortower.usage:event-emitter-lib:1.0.0'
+    // implementation 'com.sensortower.usage:event-emitter-lib:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     testImplementation "org.robolectric:robolectric:${versions.robolectric}"

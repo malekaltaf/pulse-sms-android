@@ -25,6 +25,7 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
     }
+    namespace 'xyz.klinker.messenger.api.implementation'
 
 }
 
